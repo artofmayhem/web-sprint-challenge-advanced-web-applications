@@ -1,14 +1,22 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import BubblePage from "./components/BubblePage";
-
 import Login from "./components/Login";
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles.scss";
 import "./App.css";
 
 function App() {
+
+  
+ 
+    const logout = () => {
+      alert("You have been logged out. Thank you for visiting");
+      localStorage.clear();
+      return <Redirect to='/login' />
+    };
+
   return (
     <Router>
       <div
@@ -29,8 +37,10 @@ function App() {
           <h3  style={{ margin: "5vh 10vw" }}>
             Scroll Down To Login
           </h3>
+          <Link to='protected' >BubblePage</Link>
+          <Link onClick={() => logout()}>Logout</Link>
         </div>
-        <Route exact path="/" component={Login} />
+        <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/protected" component={BubblePage} />
       </div>
     </Router>

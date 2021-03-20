@@ -7,7 +7,7 @@ const initialColor = {
   code: { hex: "" }
 };
 
-const ColorList = ({ colors, updateColors, FetchColors }) => {
+const ColorList = ({ colors, updateColors }) => {
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
@@ -20,14 +20,14 @@ const ColorList = ({ colors, updateColors, FetchColors }) => {
     e.preventDefault();
     axiosWithAuth()
     .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
-    .then(res => editColor())
+    .then(res => console.log('2. res from saveEdit in ColorList', res))
     .catch(error => console.log('ERR_THREE: This error is from saveEdit attempt in ColorList:', error))
   };
 
   const deleteColor = color => {
     axiosWithAuth()
     .delete(`http://localhost:5000/api/colors/${color.id}`, color)
-    .then(res => FetchColors())
+    .then(res => console.log('3. res data from delete color in ColorList', res.data))
     .catch(error => console.log('ERR_FOUR: This error is from deleteColor attempt in ColorList: ', error))
   }
 

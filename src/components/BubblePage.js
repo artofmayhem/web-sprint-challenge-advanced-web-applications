@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from '../helpers/axiosWithAuth';
 
 import Bubbles from "./Bubbles";
@@ -7,19 +7,21 @@ import ColorList from "./ColorList";
 const BubblePage = () => {
   const [colorList, setColorList] = useState([]);
   
-  const FetchColors = () => {
+
+  useEffect(() => {
+
     axiosWithAuth()
-    .get('http://localhost:5000/api/colors')
+    .get('/colors')
     .then(res => {
       setColorList(res.data)
-      console.log("1. resolved color list data and setColorList data from Bubble page", res.data, colorList)
+      console.log("1. resolved color list data and setColorList data from Bubble page", res, colorList)
     })
     .catch(error => console.log('ERR_2: This error is from Bubble page fetchColors', error))
-  }
+ }, [])
 
   return (
     <>
-      <ColorList colors={colorList} updateColors={setColorList} FetchColors={FetchColors} />
+      <ColorList colors={colorList} updateColors={setColorList} />
       <Bubbles colors={colorList} />
     </>
   );

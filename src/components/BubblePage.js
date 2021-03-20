@@ -22,6 +22,7 @@ const BubblePage = () => {
   );
 };
 
+
 export default BubblePage;
 
 //Task List:

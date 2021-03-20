@@ -29,7 +29,7 @@ const Login = () => {
     .post("http://localhost:5000/api/login", credentials)
     .then(res => {
       localStorage.setItem('authToken', res.data.payload )
-      history.push('/protected')
+      history.push('/bubbles')
     })
     .catch(error => {
       console.log('ERR_1: This error is from Login', error)

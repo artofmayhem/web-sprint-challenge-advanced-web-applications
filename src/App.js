@@ -37,11 +37,11 @@ function App() {
           <h3  style={{ margin: "5vh 10vw" }}>
             Scroll Down To Login
           </h3>
-          <Link to='protected' >BubblePage</Link>
+          <Link to='bubbles' >BubblePage</Link>
           <Link onClick={() => logout()}>Logout</Link>
         </div>
         <Route exact path="/login" component={Login} />
-        <PrivateRoute exact path="/protected" component={BubblePage} />
+        <PrivateRoute exact path="/bubbles" component={BubblePage} />
       </div>
     </Router>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EditMenu from './EditMenu'
-import axios from "axios";
+import { axiosWithAuth } from '../helpers/axiosWithAuth';
 
 const initialColor = {
   color: "",
@@ -18,6 +18,9 @@ const ColorList = ({ colors, updateColors }) => {
 
   const saveEdit = e => {
     e.preventDefault();
+    axiosWithAuth()
+    .put(`api/colors/${colorToEdit.id}`, colorToEdit)
+    .then(res => getColors())
 
   };
 

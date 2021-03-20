@@ -6,7 +6,7 @@ import ColorList from "./ColorList";
 
 const BubblePage = () => {
   const [colorList, setColorList] = useState([]);
-  
+  const ghost = ''
 
   useEffect(() => {
 
@@ -17,7 +17,7 @@ const BubblePage = () => {
       console.log("1. resolved color list data and setColorList data from Bubble page", res, colorList)
     })
     .catch(error => console.log('ERR_2: This error is from Bubble page fetchColors', error))
- }, [])
+    }, [ghost])
 
   return (
     <>

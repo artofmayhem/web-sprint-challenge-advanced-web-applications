@@ -13,7 +13,7 @@ const Bubbles = ({ colors }) => {
   }, [colors]);
 
   return (
-    <div className="bubble-wrap">
+    <div className="bubble-wrap" style={{marginTop: '100vh'}}>
       <p>bubbles</p>
       <Svg width={400} height={400}>
         <Pack

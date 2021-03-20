@@ -33,6 +33,7 @@ const Bubbles = ({ colors }) => {
                   return (
                     <Circle
                       key={key}
+                      alt='texthook'
                       cx={x}
                       cy={y}
                       r={r}

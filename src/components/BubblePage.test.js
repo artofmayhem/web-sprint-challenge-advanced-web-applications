@@ -3,11 +3,27 @@ import { render, screen } from "@testing-library/react";
 import BubblePage from "./BubblePage";
 
 test("Renders BubblePage without errors", () => {
-  // Finish this test
+    render(<BubblePage />)
 });
 
 test("Fetches data and renders the bubbles on mounting", () => {
   // Finish this test
+  //Arrange
+  render(<BubblePage />)
+
+  //ACT
+  //none needed 
+
+  //Assert
+  const bubbles = screen.findAllByAltText(/texthook/i)
+  bubbles.then((e) => {
+    expect(e).toBeVisible()
+    expect(e).toBeInTheDocument()
+  })
+  bubbles.catch((error) => {
+    console.log(error)
+  })
+
 });
 
 //Task List

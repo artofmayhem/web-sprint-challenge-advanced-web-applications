@@ -20,8 +20,22 @@ const ColorList = ({ colors, updateColors }) => {
     e.preventDefault();
     axiosWithAuth()
     .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
-    .then(res => console.log('2. res from saveEdit in ColorList', res))
+    .then(res => {
+      console.log('2. res from saveEdit in ColorList', res)
+      updateColors(
+        colors.map((color) => {
+          if (color.id === colorToEdit.id) {
+            return res.data
+          } else {
+            return color
+          }
+        })
+      )
+      setColorToEdit(initialColor)
+      setEditing(false)
+    })
     .catch(error => console.log('ERR_THREE: This error is from saveEdit attempt in ColorList:', error))
+
   };
 
   const deleteColor = color => {
@@ -33,10 +47,10 @@ const ColorList = ({ colors, updateColors }) => {
 
   return (
     <div className="colors-wrap">
-      <p>colors</p>
+      <h1>colors</h1>
       <ul>
-        {colors.map(color => (
-          <li key={color.color} onClick={() => editColor(color)}>
+        {colors.map((color, idx)=> (
+          <li key={idx} onClick={() => editColor(color)}>
             <span>
               <span className="delete" onClick={e => {
                     e.stopPropagation();
